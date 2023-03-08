@@ -17,4 +17,12 @@ model User {
   @@map("users")
 }
 
+model Checkin {
+  id String @id @default(uuid())
+  created_at DateTime @default(now())
+  validated_at DateTime?
+
+  @@map("check_ins")
+}
+
 

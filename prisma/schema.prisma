@@ -17,6 +17,7 @@ model User {
   @@map("users")
 }
 
+
 model Checkin {
   id String @id @default(uuid())
   created_at DateTime @default(now())
@@ -24,6 +25,7 @@ model Checkin {
 
   @@map("check_ins")
 }
+
 
 model Gym {
   id String @id @default(uuid())

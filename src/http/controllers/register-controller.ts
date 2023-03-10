@@ -1,4 +1,4 @@
-import { PrismaUsersRepository } from '@/repositories/prisma-users-repository';
+import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users-repository';
 import { RegisterUseCase } from '@/use-cases/register-use-case';
 import { FastifyRequest, FastifyReply } from 'fastify';
 import z from 'zod';

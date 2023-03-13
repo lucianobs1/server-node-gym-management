@@ -35,4 +35,25 @@ describe('Register Use Case', () => {
 
     console.log(isPasswordCorrectlyHashed);
   });
+
+  it('should not be able to register with same email twice', async () => {
+    const inMemoryUsersRepository = new InMemoryUsersRepository();
+    const registerUseCase = new RegisterUseCase(inMemoryUsersRepository);
+
+    const email = 'johndoe@example.com';
+
+    await registerUseCase.execute({
+      name: 'John Doe',
+      email,
+      password: '123456',
+    });
+
+    expect(() =>
+      registerUseCase.execute({
+        name: 'John Doe',
+        email,
+        password: '123456',
+      })
+    ).rejects.toBeInstanceOf(UserAlreadyExistsError);
+  });
 });

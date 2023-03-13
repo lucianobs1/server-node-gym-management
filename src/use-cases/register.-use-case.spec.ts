@@ -17,4 +17,22 @@ describe('Register Use Case', () => {
 
     expect(user.id).toEqual(expect.any(String));
   });
+
+  it('should hash user password upon registration', async () => {
+    const inMemoryUsersRepository = new InMemoryUsersRepository();
+    const registerUseCase = new RegisterUseCase(inMemoryUsersRepository);
+
+    const { user } = await registerUseCase.execute({
+      name: 'John Doe',
+      email: 'johndoe@example.com',
+      password: '123456',
+    });
+
+    const isPasswordCorrectlyHashed = await compare(
+      '123456',
+      user.password_hash
+    );
+
+    console.log(isPasswordCorrectlyHashed);
+  });
 });

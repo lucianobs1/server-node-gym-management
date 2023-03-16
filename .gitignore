@@ -3,3 +3,4 @@ build
 .env
 SOLID.md
 coverage
+API_REVIEW.md

@@ -5,7 +5,7 @@ Gym style app
 ## RFs (Requisitos funcionais)
 
 - [x] Deve ser possível se cadastrar;
-- [] Deve ser possível se autenticar;
+- [x] Deve ser possível se autenticar;
 - [] Deve ser possível obter do perfil de um suário logado;
 - [] Deve ser possível obter o número de check-ins realizados pelo usuário logado;
 - [] Deve ser possível obter o usuário obter seu histórico de check-ins;

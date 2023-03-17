@@ -22,8 +22,8 @@ describe('Authenticate Use Case', () => {
       title: 'Javascript Gym',
       description: '',
       phone: '',
-      latitude: new Decimal(0),
-      longitude: new Decimal(10),
+      latitude: new Decimal(-23.6218824),
+      longitude: new Decimal(-46.697299),
     });
 
     vi.useFakeTimers();
@@ -84,5 +84,25 @@ describe('Authenticate Use Case', () => {
     });
 
     expect(checkIn.id).toEqual(expect.any(String));
+  });
+
+  it('should not be able to check in on distant gym', async () => {
+    inMemoryGymsRepository.gyms.push({
+      id: 'gym-02',
+      title: 'React Gym',
+      description: '',
+      phone: '',
+      latitude: new Decimal(-23.6172703),
+      longitude: new Decimal(-46.713525),
+    });
+
+    await expect(() =>
+      sut.execute({
+        gymId: 'gym-02',
+        userId: 'user-01',
+        userLatitude: -23.6218824,
+        userLongitude: -46.697299,
+      })
+    ).rejects.toBeInstanceOf(Error);
   });
 });

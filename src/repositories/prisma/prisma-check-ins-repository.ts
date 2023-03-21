@@ -4,12 +4,17 @@ import { CheckInsRepository } from '../check-ins-repository';
 
 export class PrismaCheckInsRepository implements CheckInsRepository {
   async create(data: Prisma.CheckInUncheckedCreateInput): Promise<CheckIn> {
-    throw new Error('Method not implemented.');
+    const checkIn = await prisma.checkIn.create({
+      data,
+    });
+
+    return checkIn;
   }
 
   async save(checkIn: CheckIn): Promise<CheckIn> {
     throw new Error('Method not implemented.');
   }
+
   async findById(id: string): Promise<CheckIn | null> {
     const checkIn = await prisma.checkIn.findUnique({
       where: {

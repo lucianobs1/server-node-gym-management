@@ -1,5 +1,5 @@
 import { makeGetUserProfileUseCase } from '@/use-cases/factories/make-get-user-profile-user-case';
-import { FastifyRequest, FastifyReply } from 'fastify';
+import { FastifyReply, FastifyRequest } from 'fastify';
 
 export async function profileController(
   request: FastifyRequest,
@@ -12,7 +12,9 @@ export async function profileController(
   });
 
   return reply.status(200).send({
-    ...user,
-    password_hash: undefined,
+    user: {
+      ...user,
+      password_hash: undefined,
+    },
   });
 }

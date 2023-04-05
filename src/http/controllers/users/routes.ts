@@ -4,7 +4,7 @@ import { authenticateController } from './authenticate-controller';
 import { registerController } from './register-controller';
 import { profileController } from './profile-controller';
 
-export async function appRoutes(app: FastifyInstance) {
+export async function usersRoutes(app: FastifyInstance) {
   app.post('/users', registerController);
   app.post('/sessions', authenticateController);
 

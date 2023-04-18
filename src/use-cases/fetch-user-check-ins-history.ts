@@ -22,6 +22,8 @@ export class FetchUserCheckInsHistoryUseCase {
       page
     );
 
-    return { checkIns };
+    return {
+      checkIns,
+    };
   }
 }

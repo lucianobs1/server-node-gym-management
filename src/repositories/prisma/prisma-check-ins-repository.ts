@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma';
 import { Prisma, CheckIn } from '@prisma/client';
 import { CheckInsRepository } from '../check-ins-repository';
+import dayjs from 'dayjs';
 
 export class PrismaCheckInsRepository implements CheckInsRepository {
   async create(data: Prisma.CheckInUncheckedCreateInput): Promise<CheckIn> {
@@ -43,12 +44,23 @@ export class PrismaCheckInsRepository implements CheckInsRepository {
     return checkIns;
   }
 
-  async findByUserIdOnDate(
-    userId: string,
-    date: Date
-  ): Promise<CheckIn | null> {
-    throw new Error('Method not implemented.');
+  async findByUserIdOnDate(userId: string, date: Date) {
+    const startOfTheDay = dayjs(date).startOf('date');
+    const endOfTheDay = dayjs(date).endOf('date');
+
+    const checkIn = await prisma.checkIn.findFirst({
+      where: {
+        user_id: userId,
+        created_at: {
+          gte: startOfTheDay.toDate(),
+          lte: endOfTheDay.toDate(),
+        },
+      },
+    });
+
+    return checkIn;
   }
+
   async countByUserId(userId: string): Promise<number> {
     const count = await prisma.checkIn.count({
       where: {

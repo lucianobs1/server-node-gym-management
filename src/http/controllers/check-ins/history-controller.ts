@@ -1,11 +1,9 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { makeSearchGymsUseCase } from '@/use-cases/factories/make-search-gyms-use-case';
 import { z } from 'zod';
 import { makeFetchUserCheckInsHistoryUseCase } from '@/use-cases/factories/make-fetch-user-check-ins-history-use-case';
 
 export async function history(request: FastifyRequest, reply: FastifyReply) {
   const checkInHistoryQuerySchema = z.object({
-    query: z.string(),
     page: z.coerce.number().min(1).default(1),
   });
 
@@ -14,11 +12,11 @@ export async function history(request: FastifyRequest, reply: FastifyReply) {
   const fetchUserCheckInsHistoryUseCase = makeFetchUserCheckInsHistoryUseCase();
 
   const { checkIns } = await fetchUserCheckInsHistoryUseCase.execute({
-    userId: request.user.sub,
     page,
+    userId: request.user.sub,
   });
 
-  return reply.status(201).send({
+  return reply.status(200).send({
     checkIns,
   });
 }

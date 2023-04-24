@@ -26,6 +26,7 @@ export async function authenticateController(
       {
         email: user.email,
         name: user.name,
+        role: user.role,
       },
       {
         sign: {
@@ -38,6 +39,7 @@ export async function authenticateController(
       {
         email: user.email,
         name: user.name,
+        role: user.role,
       },
       {
         sign: {

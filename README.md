@@ -30,5 +30,3 @@ Gym style app
 - [x] Os dados da aplicação precisam estar persistidos em um banco PostgresSQL;
 - [x] Todas listas de dados precisam estar paginadas com 20 itens por página;
 - [x] O usuário dever ser identificado por um JWT (JSON Web Token);
-
-## Finished

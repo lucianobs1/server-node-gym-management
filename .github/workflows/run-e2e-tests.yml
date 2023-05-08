@@ -5,7 +5,8 @@ on: [pull_request]
 jobs:
   run-e2e-tests:
     name: Run E2E Tests
-    run-on: ubuntu-latest
+
+    on: ubuntu-latest
 
     services:
       postgres:
